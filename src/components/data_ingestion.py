@@ -9,6 +9,8 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import dataTransform
 from src.components.data_transformation import dataTransformConfig
+from src.components.model_trainer import modelTrainerConfig
+from src.components.model_trainer import modelTrainer
 
 @dataclass
 class dataIngestionConfig:
@@ -49,4 +51,7 @@ if __name__=='__main__':
     obj=dataIngestion()
     train_data, test_data=obj.initiateDI()
     data_transform=dataTransform()
-    data_transform.initiateDataTransform(train_data,test_data)
+    train_arr,test_arr,_=data_transform.initiateDataTransform(train_data,test_data)
+
+    modetrainer=modelTrainer()
+    print(modetrainer.initiateModelTraining(train_arr,test_arr))
